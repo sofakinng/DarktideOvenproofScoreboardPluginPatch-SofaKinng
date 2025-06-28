@@ -632,6 +632,7 @@ mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, da
 
 					-- ------------------------
 					-- Categorizing which enemy was damaged
+					-- TODO maybe this could be a switch
 					-- ------------------------
 					if table.array_contains(mod.melee_lessers, breed_or_nil.name) then
 						scoreboard:update_stat("total_lesser_damage", account_id, actual_damage)
@@ -756,6 +757,7 @@ end
 
 --Function to set all blank rows
 mod.set_blank_rows = function (self, account_id)
+	-- for i in range (1, 13), increment of 1
 	for i = 1,13,1 do
 		mod:replace_row_value("blank_"..i, account_id, "\u{200A}")
 	end
