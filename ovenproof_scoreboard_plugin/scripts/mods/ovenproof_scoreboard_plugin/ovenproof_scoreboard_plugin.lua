@@ -1,5 +1,8 @@
 local mod = get_mod("ovenproof_scoreboard_plugin")
 
+-- ########################
+-- REQUIRES
+-- ########################
 local PlayerUnitStatus = mod:original_require("scripts/utilities/attack/player_unit_status")
 local InteractionSettings = mod:original_require("scripts/settings/interaction/interaction_settings")
 local interaction_results = InteractionSettings.results
@@ -9,16 +12,17 @@ local LargeClipPickup = require("scripts/settings/pickup/pickups/consumable/larg
 --local Havoc = require("scripts/utilities/havoc")
 -- for ammo pickup modifier
 local HavocSettings = require("scripts/settings/havoc_settings")
+-- #######
+-- Mod Locals
+-- #######
+local mod_version = "1.2.0-beta-branch"
+local debug_messages_enabled = mod:get("enable_debug_messages")
+
 local havoc_manager = Managers.state.havoc
---local HavocModifierConfig = require("scripts/settings/havoc/havoc_modifier_config")
-
 local in_match
-
-local mod_version = "1.1.0-beta-2"
-mod.debug_messages = mod:get("enable_debug_messages")
-
---mod:echo(os.date('%H:%M:%S'))
-mod:info("Version "..mod_version.." loaded uwu nya :3")
+local is_playing_havoc
+-- ammo pickup given as a percentage, such as 0.85
+local ammunition_pickup_modifier
 
 -- ########################
 -- Data tables
@@ -248,10 +252,10 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 						local current_ammo_combined = current_ammo_clip + current_ammo_reserve
 						local max_ammo_combined = max_ammo_clip + max_ammo_reserve
 						local ammo_missing = max_ammo_combined - current_ammo_combined
-						local is_playing_havoc = havoc_manager:is_havoc()
+						
 						
 						if ammo == "small_clip" or ammo == "large_clip" then
-							local ammunition_pickup_modifier
+							
 							if is_playing_havoc then
 								-- ammunition_pickup_modifier = HavocSettings.modifier_templates.ammo_pickup_modifier[havoc_index]
 								ammunition_pickup_modifier = Managers.state.havoc:get_modifier_value("ammo_pickup_modifier")
@@ -699,15 +703,31 @@ end)
 
 -- Function to check setting changes
 function mod.on_setting_changed()
-	mod.debug_messages = mod:get("enable_debug_messages")
+	debug_messages_enabled = mod:get("enable_debug_messages")
 end
 
---Function to check states
+-- Function for metadata startup (that's not the right phrasing lol)
+function mod.on_all_mods_loaded()
+	debug_messages_enabled = mod:get("enable_debug_messages")
+	--mod:echo(os.date('%H:%M:%S'))
+	mod:info("Version "..mod_version.." loaded uwu nya :3")
+end
+
+-- Function to check states
+-- 	Entering a match
 function mod.on_game_state_changed(status, state_name)
+	-- think this means "entering gameplay" from "hub"
 	if state_name == "GameplayStateRun" and status == "enter" and Managers.state.mission:mission().name ~= "hub_ship" then
 		in_match = true
+		is_playing_havoc = havoc_manager:is_havoc()
+		if is_playing_havoc then
+			ammunition_pickup_modifier = Managers.state.havoc:get_modifier_value("ammo_pickup_modifier")
+		else
+			ammunition_pickup_modifier = 1 
+		end
 	else
 		in_match = false
+		is_playing_havoc = false
 	end
 end
 
