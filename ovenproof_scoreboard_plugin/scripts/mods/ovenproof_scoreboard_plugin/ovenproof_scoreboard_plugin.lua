@@ -415,6 +415,7 @@ mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, da
 						end
 						scoreboard:update_stat("total_kills", account_id, 1)
 
+						-- killed a disabler while an ally was disabled
 						if table.array_contains(mod.disablers, breed_or_nil.name) then
 							for k,v in pairs(mod.disabled_players) do
 								if v == attacked_unit then
