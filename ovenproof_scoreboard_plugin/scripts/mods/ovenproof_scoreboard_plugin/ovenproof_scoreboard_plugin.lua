@@ -66,13 +66,12 @@ mod.specials = {
 	"renegade_sniper",
 	"renegade_flamer",
 	"cultist_flamer",
-	"cultist_mutant_mutator",
-	"chaos_hound_mutator",
 }
 mod.disablers = {
 	"chaos_hound",
 	"chaos_hound_mutator",
 	"cultist_mutant",
+	"cultist_mutant_mutator",
 	"renegade_netgunner",
 }
 mod.bosses = {
