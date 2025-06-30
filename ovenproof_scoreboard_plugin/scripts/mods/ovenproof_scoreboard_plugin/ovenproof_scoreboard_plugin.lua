@@ -50,7 +50,6 @@ mod.melee_elites = {
 	"renegade_executor",
 	"chaos_ogryn_bulwark",
 	"chaos_ogryn_executor",
-	"renegade_radio_operator",
 }
 mod.ranged_elites = {
 	"cultist_gunner",
@@ -58,6 +57,7 @@ mod.ranged_elites = {
 	"cultist_shocktrooper",
 	"renegade_shocktrooper",
 	"chaos_ogryn_gunner",
+	"renegade_radio_operator",
 }
 mod.specials = {
 	"chaos_poxwalker_bomber",
