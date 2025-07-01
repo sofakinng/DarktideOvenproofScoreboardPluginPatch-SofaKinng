@@ -213,7 +213,11 @@ mod:hook(CLASS.InteracteeExtension, "started", function(func, self, interactor_u
 	func(self, interactor_unit, ...)
 end)
 
---Hook to track materials picked up, health stations used, and ammo picked up
+-- ############
+-- Exploration: Equipment Use and Pickups
+--	Track materials picked up, health stations used, and ammo picked up
+--	Interactions
+-- ############
 mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 	local scoreboard = get_mod("scoreboard")
 	if scoreboard then
@@ -252,16 +256,9 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 						local max_ammo_combined = max_ammo_clip + max_ammo_reserve
 						local ammo_missing = max_ammo_combined - current_ammo_combined
 						
-						
+						-- Small boxes and Big bags
 						if ammo == "small_clip" or ammo == "large_clip" then
-							
-							if is_playing_havoc then
-								-- ammunition_pickup_modifier = HavocSettings.modifier_templates.ammo_pickup_modifier[havoc_index]
-								ammunition_pickup_modifier = Managers.state.havoc:get_modifier_value("ammo_pickup_modifier")
-							else
-								ammunition_pickup_modifier = 1
-							end
-							
+							-- ammunition_pickup_modifier to account for Havoc modifiers. set by state change check
 							local pickup = math.ceil(mod.ammunition_percentage[ammo] * ammunition_pickup_modifier * max_ammo_reserve)
 							-- ^ Ammo pickups are rounded up by the game
 							local wasted = math.max(pickup - ammo_missing, 0)
@@ -282,17 +279,10 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 								end
 								Managers.event:trigger("event_combat_feed_kill", unit, message)
 							end
+						-- Deployabla Ammo Crates
 						elseif ammo == "crate" then
 							scoreboard:update_stat("ammo_crates", account_id, 1)
 							if mod:get("ammo_messages") then
-								local ammunition_pickup_modifier
-								if is_playing_havoc then
-									-- ammunition_pickup_modifier = HavocSettings.modifier_templates.ammo_pickup_modifier[havoc_index]
-									ammunition_pickup_modifier = Managers.state.havoc:get_modifier_value("ammo_pickup_modifier")
-								else
-									ammunition_pickup_modifier = 1
-								end
-								
 								local missing_pct = 100 * ((ammo_missing * ammunition_pickup_modifier) / max_ammo_combined)
 								local ammo_taken = TextUtilities.apply_color_to_text(tostring(math.round(missing_pct)).."%", color)
 								local text_crate = TextUtilities.apply_color_to_text(mod:localize("message_ammo_crate_text"), color)
@@ -308,7 +298,11 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 	func(self, result, ...)
 end)
 
---Hook to track damage taken and number of times disabled/downed/killed
+-- ############
+-- Defense
+--	Track damage taken and times disabled/downed/killed
+--	Player State
+-- ############
 mod:hook(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, unit, dt, t, ...)
 	local scoreboard = get_mod("scoreboard")
 	if scoreboard then
@@ -357,7 +351,11 @@ mod:hook(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, u
 	func(self, unit, dt, t, ...)
 end)
 
---Hook to track number of times a player helped/revived/rescued an other player
+-- ############
+-- Defense: Helping Allies
+-- 	Tracks allies undisabled/revived/rescued
+--	Player Interactions
+-- ############
 mod:hook(CLASS.PlayerInteracteeExtension, "stopped", function(func, self, result, ...)
 	local scoreboard = get_mod("scoreboard")
 	if scoreboard then
@@ -383,7 +381,11 @@ mod:hook(CLASS.PlayerInteracteeExtension, "stopped", function(func, self, result
 	func(self, result, ...)
 end)
 
---Hook to track damage/kills/rates
+-- ############
+-- Offense
+--	Damage, kills, and crit/weakspot rate
+--	Attack reports
+-- ############
 mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, damage_profile, attacked_unit, attacking_unit, attack_direction, hit_world_position, hit_weakspot, damage, attack_result, attack_type, damage_efficiency, is_critical_strike, ...)
 	local scoreboard = get_mod("scoreboard")
 	if scoreboard then
@@ -702,20 +704,26 @@ mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, da
 	return func(self, damage_profile, attacked_unit, attacking_unit, attack_direction, hit_world_position, hit_weakspot, damage, attack_result, attack_type, damage_efficiency, is_critical_strike, ...)
 end)
 
--- Function to check setting changes
+-- ############
+-- Check Setting Changes
+-- ############
 function mod.on_setting_changed()
 	debug_messages_enabled = mod:get("enable_debug_messages")
 end
 
--- Function for metadata startup (that's not the right phrasing lol)
+-- ############
+-- Mod Startup Messages
+-- ############
 function mod.on_all_mods_loaded()
 	debug_messages_enabled = mod:get("enable_debug_messages")
 	--mod:echo(os.date('%H:%M:%S'))
 	mod:info("Version "..mod_version.." loaded uwu nya :3")
 end
 
--- Function to check states
+-- ############
+-- Check State Changes
 -- 	Entering a match
+-- ############
 function mod.on_game_state_changed(status, state_name)
 	-- think this means "entering gameplay" from "hub"
 	if state_name == "GameplayStateRun" and status == "enter" and Managers.state.mission:mission().name ~= "hub_ship" then
@@ -732,7 +740,9 @@ function mod.on_game_state_changed(status, state_name)
 	end
 end
 
---Function to manage blank rows
+-- ############
+-- Manage Blank Rows
+-- ############
 mod.manage_blank_rows = function()
 local scoreboard = get_mod("scoreboard")
 	if scoreboard and in_match then
@@ -755,7 +765,9 @@ local scoreboard = get_mod("scoreboard")
 	end
 end
 
---Function to set all blank rows
+-- ############
+-- Set All Blank Rows
+-- ############
 mod.set_blank_rows = function (self, account_id)
 	-- for i in range (1, 13), increment of 1
 	for i = 1,13,1 do
@@ -764,7 +776,9 @@ mod.set_blank_rows = function (self, account_id)
 	mod:replace_row_value("highest_single_hit", account_id, "\u{200A}0\u{200A}")
 end
 
+-- ############
 --Function to replace entire value in scoreboard
+-- ############
 mod.replace_row_value = function(self, row_name, account_id, value)
 local scoreboard = get_mod("scoreboard")
 	if scoreboard then
@@ -789,7 +803,9 @@ local scoreboard = get_mod("scoreboard")
 	end
 end
 
+-- ############
 --Function to force replacement of text value in scoreboard
+-- ############
 mod.replace_row_text = function(self, row_name, account_id, value)
 local scoreboard = get_mod("scoreboard")
 	if scoreboard then
@@ -804,7 +820,9 @@ local scoreboard = get_mod("scoreboard")
 	end
 end
 
+-- ############
 --Function to get a row value from scoreboard
+-- ############
 mod.get_row_value = function(self, row_name, account_id)
 	local scoreboard = get_mod("scoreboard")
 	if scoreboard then
