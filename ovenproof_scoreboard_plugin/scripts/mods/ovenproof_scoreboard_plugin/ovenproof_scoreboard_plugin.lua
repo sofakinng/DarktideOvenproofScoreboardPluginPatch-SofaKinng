@@ -9,9 +9,7 @@ local interaction_results = InteractionSettings.results
 local TextUtilities = mod:original_require("scripts/utilities/ui/text")
 --local SmallClipPickup = require("scripts/settings/pickup/pickups/consumable/small_clip_pickup")
 --local LargeClipPickup = require("scripts/settings/pickup/pickups/consumable/large_clip_pickup")
---local Havoc = require("scripts/utilities/havoc")
--- for ammo pickup modifier
---local HavocSettings = require("scripts/settings/havoc_settings")
+
 -- #######
 -- Mod Locals
 -- #######
