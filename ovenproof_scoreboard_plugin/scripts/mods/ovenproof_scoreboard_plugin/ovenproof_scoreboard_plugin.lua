@@ -135,6 +135,18 @@ mod.burning_damage_profiles ={
 mod.warpfire_damage_profiles ={
 	"warpfire",
 }
+--[[
+mod.electrocution_damage_profiles = {
+	"shockmaul_stun_interval_damage",
+	"powermaul_p2_stun_interval",
+	"powermaul_p2_stun_interval_basic",
+	"powermaul_shield_block_special",
+	"shock_grenade_stun_interval",
+	"psyker_protectorate_spread_chain_lightning_interval",
+	"default_chain_lighting_interval",
+	"psyker_smite_kill",
+}
+]]
 mod.environmental_damage_profiles = {
 	"barrel_explosion",
 	"barrel_explosion_close",
