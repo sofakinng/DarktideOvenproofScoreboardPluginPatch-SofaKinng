@@ -1,7 +1,7 @@
 local mod = get_mod("ovenproof_scoreboard_plugin")
 local UIRenderer = mod:original_require("scripts/managers/ui/ui_renderer")
 local ui_renderer_instance = Managers.ui:ui_constant_elements():ui_renderer()
-local languages = {"en","ru","zh-cn"}
+local languages = {"en","ru","zh-cn", "zh-tw"}
 
 mod.get_text_size = function(self, input_text)
 
@@ -36,11 +36,13 @@ local localization = {
 		en = "OvenProof's scoreboard",
 		ru = "Таблица результатов - плагин OvenProof'а",
 		["zh-cn"] = "OvenProof 的记分板",
+		["zh-tw"] = "OvenProof 的記分板",
 	},
 	mod_description = {
 		en = "OvenProof's custom scoreboard",
 		ru = "Ovenproof's Scoreboard Plugin - Плагин для Таблицы результатов с более подробными данными.",
 		["zh-cn"] = "OvenProof 的自定义记分板",
+		["zh-tw"] = "OvenProof 的自訂記分板",
 	},
 --Groups
 	group_1 = {

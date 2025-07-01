@@ -1,5 +1,5 @@
 # 2025-06-27
-v1.3.0-beta-branch
+v1.2.0-beta-branch
 
 - Removed "buffs" from melee damage types
     - Concerns of it affecting the warpfire and bleed counts
