@@ -263,10 +263,12 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 							local pickup = math.ceil(mod.ammunition_percentage[ammo] * mod.ammunition_pickup_modifier * max_ammo_reserve)
 							-- ^ Ammo pickups are rounded up by the game
 							local wasted = math.max(pickup - ammo_missing, 0)
-							--local pickup_pct = 100 * pickup / max_ammo_combined
+							local pickup_pct = 100 * pickup / max_ammo_combined
 							local wasted_pct = 100 * wasted / max_ammo_reserve
-							local base_pickup_pct = 100 * mod.ammunition_percentage[ammo]
-							scoreboard:update_stat("ammo_percent", account_id, base_pickup_pct)
+							--local base_pickup_pct = 100 * mod.ammunition_percentage[ammo]
+							--scoreboard:update_stat("ammo_percent", account_id, base_pickup_pct)
+							-- Using pickup percentage to account for Havoc modifiers
+							scoreboard:update_stat("ammo_percent", account_id, pickup_pct)
 							scoreboard:update_stat("ammo_wasted_percent", account_id, wasted_pct)
 							if mod:get("ammo_messages") then
 								local pickup_text = TextUtilities.apply_color_to_text(mod:localize("message_"..ammo), color)
