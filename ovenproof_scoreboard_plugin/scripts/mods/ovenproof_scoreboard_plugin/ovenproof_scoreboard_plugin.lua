@@ -260,7 +260,7 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 						-- Small boxes and Big bags
 						if ammo == "small_clip" or ammo == "large_clip" then
 							-- ammunition_pickup_modifier to account for Havoc modifiers. set by state change check
-							local pickup = math.ceil(mod.ammunition_percentage[ammo] * ammunition_pickup_modifier * max_ammo_reserve)
+							local pickup = math.ceil(mod.ammunition_percentage[ammo] * mod.ammunition_pickup_modifier * max_ammo_reserve)
 							-- ^ Ammo pickups are rounded up by the game
 							local wasted = math.max(pickup - ammo_missing, 0)
 							--local pickup_pct = 100 * pickup / max_ammo_combined
@@ -284,7 +284,7 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 						elseif ammo == "crate" then
 							scoreboard:update_stat("ammo_crates", account_id, 1)
 							if mod:get("ammo_messages") then
-								local missing_pct = 100 * ((ammo_missing * ammunition_pickup_modifier) / max_ammo_combined)
+								local missing_pct = 100 * ((ammo_missing * mod.ammunition_pickup_modifier) / max_ammo_combined)
 								local ammo_taken = TextUtilities.apply_color_to_text(tostring(math.round(missing_pct)).."%", color)
 								local text_crate = TextUtilities.apply_color_to_text(mod:localize("message_ammo_crate_text"), color)
 								local message = mod:localize("message_ammo_crate", ammo_taken, text_crate)
@@ -732,9 +732,9 @@ function mod.on_game_state_changed(status, state_name)
 		havoc_manager = Managers.state.havoc
 		is_playing_havoc = havoc_manager:is_havoc()
 		if is_playing_havoc then
-			ammunition_pickup_modifier = havoc_manager:get_modifier_value("ammo_pickup_modifier")
+			mod.ammunition_pickup_modifier = havoc_manager:get_modifier_value("ammo_pickup_modifier")
 		else
-			ammunition_pickup_modifier = 1 
+			mod.ammunition_pickup_modifier = 1 
 		end
 	else
 		in_match = false
