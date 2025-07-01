@@ -109,6 +109,8 @@ mod.ranged_damage_profiles ={
 	"default_chain_lighting_interval",
 	"psyker_smite_kill",
 }
+-- Dog damage doesn't count as melee/ranged for penances
+--	but the shock bomb collar counts for puncture, which is covered by "explosion" being in ranged_attack_types
 mod.companion_attack_types ={
 	"companion_dog", -- covers the breed_pounce types
 }
