@@ -20,7 +20,7 @@ local in_match
 local is_playing_havoc
 local havoc_manager
 -- ammo pickup given as a percentage, such as 0.85
-mod.ammunition_pickup_modifier
+mod.ammunition_pickup_modifier = 1
 
 -- ########################
 -- Data tables
