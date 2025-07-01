@@ -30,6 +30,7 @@ end
 return string_left..tab_string..padding_string..string_right
 end
 
+-- Are the simplified and traditional Mandarin translations supposed to be identical, or am I just uncultured? -backup
 local localization = {
 -- Core
 	mod_title = {
@@ -81,22 +82,22 @@ local localization = {
 		["zh-cn"] = "弱点和暴击率",
 	},
 	offense_tier_0 = {
-		en = "Offense (tier 0)",
+		en = "Offense (Tier 0)",
 		ru = "Нападение (ряд 0)",
 		["zh-cn"] = "进攻（T0）",
 	},
 	offense_tier_1 = {
-		en = "Offense (tier 1)",
+		en = "Offense (Tier 1)",
 		ru = "Нападение (ряд 1)",
 		["zh-cn"] = "进攻（T1）",
 	},
 	offense_tier_2 = {
-		en = "Offense (tier 2)",
+		en = "Offense (Tier 2)",
 		ru = "Нападение (ряд 2)",
 		["zh-cn"] = "进攻（T2）",
 	},
 	offense_tier_3 = {
-		en = "Offense (tier 3)",
+		en = "Offense (Tier 3)",
 		ru = "Нападение (ряд 3)",
 		["zh-cn"] = "进攻（T3）",
 	},
@@ -128,41 +129,41 @@ local localization = {
 --Ammo messages
 	message_grenades = {
 		en = "grenades",
-		["zh-cn"] = "手雷"
+		["zh-cn"] = "手雷",
 	},
 	message_small_clip = {
 		en = "ammo box",
-		["zh-cn"] = "小弹药罐"
+		["zh-cn"] = "小弹药罐",
 	},
 	message_large_clip = {
 		en = "ammo bag",
-		["zh-cn"] = "大弹药包"
+		["zh-cn"] = "大弹药包",
 	},
 	message_ammo_no_waste = {
 		--en = " picked up %s ammo",
 		en = " picked up an %s",
-		["zh-cn"] = "拾取了%s"
+		["zh-cn"] = "拾取了%s",
 	},
 	message_ammo_waste = {
 		--en = " picked up %s ammo, wasted %s",
 		en = " picked up an %s, wasted %s ammo",
-		["zh-cn"] = "拾取了%s，浪费了%s弹药"
+		["zh-cn"] = "拾取了%s，浪费了%s弹药",
 	},
 	message_ammo_crate = {
 		en = " picked up %s ammo from an %s",
-		["zh-cn"] = "拾取了%s弹药，来自%s"
+		["zh-cn"] = "拾取了%s弹药，来自%s",
 	},
 	message_ammo_crate_text = {
 		en = "ammo crate",
-		["zh-cn"] = "弹药箱"
+		["zh-cn"] = "弹药箱",
 	},
 	message_grenades_body = {
 		en = " picked up %s",
-		["zh-cn"] = "拾取了%s"
+		["zh-cn"] = "拾取了%s",
 	},
 	message_grenades_text = {
 		en = "grenades",
-		["zh-cn"] = "手雷"
+		["zh-cn"] = "手雷",
 	},
 --Rows exploration_tier_0
 	row_total_material_pickups = {
@@ -176,11 +177,11 @@ local localization = {
 	},
 	row_ammo_percent = {
 		en = "Taken",
-		["zh-cn"] = "拾取"
+		["zh-cn"] = "拾取",
 	},
 	row_ammo_wasted = {
 		en = "Wasted",
-		["zh-cn"] = "浪费"
+		["zh-cn"] = "浪费",
 	},
 	row_ammo_2 = {
 		en = {left = "Total", right = "[ Grenades Taken | Crates Used ]",},
@@ -188,11 +189,11 @@ local localization = {
 	},
 	row_ammo_grenades = {
 		en = "Grenades Taken",
-		["zh-cn"] = "手雷拾取"
+		["zh-cn"] = "手雷拾取",
 	},
 	row_ammo_crates = {
 		en = "Crates Used",
-		["zh-cn"] = "弹药箱使用"
+		["zh-cn"] = "弹药箱使用",
 	},
 --Rows defense_tier_0
 	row_total_health = {
