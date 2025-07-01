@@ -31,7 +31,7 @@ return string_left..tab_string..padding_string..string_right
 end
 
 local localization = {
--- Core
+	-- Core
 	mod_title = {
 		en = "OvenProof's scoreboard",
 		ru = "Таблица результатов - плагин OvenProof'а",
@@ -44,7 +44,7 @@ local localization = {
 		["zh-cn"] = "OvenProof 的自定义记分板",
 		["zh-tw"] = "OvenProof 的自訂記分板",
 	},
---Groups
+	-- Groups
 	group_1 = {
 		en = "Group 1",
 		ru = "Группа 1",
@@ -57,7 +57,7 @@ local localization = {
 		["zh-cn"] = "分数",
 		["zh-tw"] = "分數",
 	},
---Settings
+	-- Settings
 	enable_debug_messages = {
 		en = "Enable error messages",
 	},
@@ -126,7 +126,7 @@ local localization = {
 		["zh-cn"] = "消息 - 弹药/手雷拾取",
 		["zh-tw"] = "訊息 - 彈藥/手雷拾取",
 	},
---Reusable labels
+	-- Reusable labels
 	row_kills = {
 		en = "Kills",
 		ru = "Убийств",
@@ -139,7 +139,7 @@ local localization = {
 		["zh-cn"] = "伤害",
 		["zh-tw"] = "傷害",
 	},
---Ammo messages
+	-- Ammo messages
 	message_grenades = {
 		en = "grenades",
 		["zh-cn"] = "手雷",
@@ -187,7 +187,7 @@ local localization = {
 		["zh-cn"] = "手雷",
 		["zh-tw"] = "手雷",
 	},
---Rows exploration_tier_0
+	-- Rows: exploration_tier_0
 	row_total_material_pickups = {
 		en = "Total Material Pickups",
 		ru = "Всего поднято Ресурсов",
@@ -224,7 +224,7 @@ local localization = {
 		["zh-cn"] = "弹药箱使用",
 		["zh-tw"] = "彈藥箱使用",
 	},
---Rows defense_tier_0
+	-- Rows: defense_tier_0
 	row_total_health = {
 		en = {left = "Total", right = "[ Damage Taken | HP Stations Used ]",},
 		ru = {left = "Всего", right = "[Урона получено/Исп.медстанций]",},
@@ -315,7 +315,7 @@ local localization = {
 		["zh-cn"] = "营救玩家数",
 		["zh-tw"] = "營救玩家數",
 	},
---Rows offense_rates
+	-- Rows: offense_rates
 	row_total_weakspot_rates = {
 		en = {left = "Weakspot Rate", right = "[ Melee | Ranged ]",},
 		ru = {left = "Уязвимые места", right = "[Ближний/Дальний]",},
@@ -398,14 +398,14 @@ local localization = {
 		["zh-cn"] = "环境",
 		["zh-tw"] = "環境",
 	},
---Rows offense_tier_0
+	-- Rows: offense_tier_0
 	row_total = {
 		en = {left = "Total", right = "[ Kills | Damage ]",},
 		ru = {left = "Всего", right = "[Убийств/Урона]",},
 		["zh-cn"] = {left = "总数", right = "[ 击杀 | 伤害 ]",},
 		["zh-tw"] = { left = "總數", right = "[ 擊殺 | 傷害 ]",},
 	},
---Rows offense_tier_1
+	-- Rows: offense_tier_1
 	row_total_melee = {
 		en = {left = "Total Melee", right = "[ Kills | Damage ]",},
 		ru = {left = "Всего в Ближнем бою", right = "[Убийств/Урона]",},
@@ -449,7 +449,7 @@ local localization = {
 		["zh-cn"] = {left = "总环境", right = "[ 击杀 | 伤害 ]",},
 		["zh-tw"] = { left = "總環境", right = "[ 擊殺 | 傷害 ]",},
 	},
---Rows offense_tier_2
+	-- Rows: offense_tier_2
 	row_total_lesser = {
 		en = {left = "Total Lesser", right = "[ Kills | Damage ]",},
 		ru = {left = "Всего Слабые враги", right = "[Убийств/Урона]",},
@@ -474,7 +474,7 @@ local localization = {
 		["zh-cn"] = {left = "总 Boss", right = "[ 击杀 | 伤害 ]",},
 		["zh-tw"] = { left = "全部的 Boss", right = "[ 擊殺 | 傷害 ]",},
 	},
---Rows offense_tier_3
+	-- Rows: offense_tier_3
 	row_melee_lesser = {
 		en = {left = "Melee Lesser", right = "[ Kills | Damage ]",},
 		ru = {left = "Слабые - Ближний бой", right = "[Убийств/Урона]",},
@@ -517,7 +517,7 @@ local localization = {
 		["zh-cn"] = {left = "Boss", right = "[ 击杀 | 伤害 ]",},
 		["zh-tw"] = { left = "Boss", right = "[ 擊殺 | 傷害 ]",},
 	},
---Rows fun_stuff_01
+	-- Rows: fun_stuff_01
 	row_one_shots = {
 		en = "Number of one shots",
 		ru = "Убийств одним ударом",
@@ -530,8 +530,8 @@ local localization = {
 		["zh-cn"] = "最高单次伤害",
 		["zh-tw"] = "最高單次傷害",
 	},
---Rows blank
--- btw you don't need to add localizations to these. it defaults to english if you don't have one (and they're all the same so it's fine)
+	-- Rows: Blank
+	-- btw you don't need to add localizations to these. it defaults to english if you don't have one (and they're all the same so it's fine)
 	row_blank = {
 		en = " ",
 		ru = " ",
