@@ -7,22 +7,22 @@ local PlayerUnitStatus = mod:original_require("scripts/utilities/attack/player_u
 local InteractionSettings = mod:original_require("scripts/settings/interaction/interaction_settings")
 local interaction_results = InteractionSettings.results
 local TextUtilities = mod:original_require("scripts/utilities/ui/text")
-local SmallClipPickup = require("scripts/settings/pickup/pickups/consumable/small_clip_pickup")
-local LargeClipPickup = require("scripts/settings/pickup/pickups/consumable/large_clip_pickup")
+--local SmallClipPickup = require("scripts/settings/pickup/pickups/consumable/small_clip_pickup")
+--local LargeClipPickup = require("scripts/settings/pickup/pickups/consumable/large_clip_pickup")
 --local Havoc = require("scripts/utilities/havoc")
 -- for ammo pickup modifier
-local HavocSettings = require("scripts/settings/havoc_settings")
+--local HavocSettings = require("scripts/settings/havoc_settings")
 -- #######
 -- Mod Locals
 -- #######
 local mod_version = "1.2.0-beta-branch"
 local debug_messages_enabled = mod:get("enable_debug_messages")
 
-local havoc_manager = Managers.state.havoc
 local in_match
 local is_playing_havoc
+local havoc_manager
 -- ammo pickup given as a percentage, such as 0.85
-local ammunition_pickup_modifier
+mod.ammunition_pickup_modifier
 
 -- ########################
 -- Data tables
@@ -729,9 +729,10 @@ function mod.on_game_state_changed(status, state_name)
 	-- think this means "entering gameplay" from "hub"
 	if state_name == "GameplayStateRun" and status == "enter" and Managers.state.mission:mission().name ~= "hub_ship" then
 		in_match = true
+		havoc_manager = Managers.state.havoc
 		is_playing_havoc = havoc_manager:is_havoc()
 		if is_playing_havoc then
-			ammunition_pickup_modifier = Managers.state.havoc:get_modifier_value("ammo_pickup_modifier")
+			ammunition_pickup_modifier = havoc_manager:get_modifier_value("ammo_pickup_modifier")
 		else
 			ammunition_pickup_modifier = 1 
 		end
