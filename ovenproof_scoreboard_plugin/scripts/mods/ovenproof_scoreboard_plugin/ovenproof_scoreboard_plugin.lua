@@ -90,10 +90,10 @@ mod.bosses = {
 mod.melee_attack_types ={
 	"melee",
 	"push",
-	-- "buff", -- regular Shock Maul and Arbites power maul stun intervals. also covers warp
+	-- "buff", -- regular Shock Maul and Arbites power maul stun intervals. also covers warp and bleed
 }
 mod.melee_damage_profiles ={
-	--"shockmaul_stun_interval_damage",
+	--"shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
 	"powermaul_p2_stun_interval",
 	"powermaul_p2_stun_interval_basic",
 	"powermaul_shield_block_special",
@@ -119,7 +119,7 @@ mod.companion_damage_profiles ={
 	-- "adamant_companion_human_pounce",
 	-- "adamant_companion_ogryn_pounce",
 	-- "adamant_companion_monster_pounce",
-	"shockmaul_stun_interval_damage",
+	"shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
 }
 
 mod.bleeding_damage_profiles ={
