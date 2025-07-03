@@ -1,3 +1,10 @@
+# 2025-07-01
+v1.2.1-beta
+
+- Added localizations for new settings
+    - I don't know who added these so I can't credit :(
+    - Russian, Simplified Mandarin, and Traditional Mandarin
+
 # 2025-06-27
 v1.2.0-beta-branch
 
