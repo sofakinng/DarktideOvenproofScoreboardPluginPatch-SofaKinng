@@ -13,7 +13,7 @@ local TextUtilities = mod:original_require("scripts/utilities/ui/text")
 -- #######
 -- Mod Locals
 -- #######
-local mod_version = "1.2.0-beta-branch"
+local mod_version = "1.2.2"
 local debug_messages_enabled = mod:get("enable_debug_messages")
 
 local in_match
@@ -93,7 +93,7 @@ mod.melee_attack_types ={
 	-- "buff", -- regular Shock Maul and Arbites power maul stun intervals. also covers warp and bleed
 }
 mod.melee_damage_profiles ={
-	--"shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
+	"shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
 	"powermaul_p2_stun_interval",
 	"powermaul_p2_stun_interval_basic",
 	"powermaul_shield_block_special",
@@ -471,7 +471,8 @@ mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, da
 					-- ------------
 					--	Melee
 					-- ------------
-					if table.array_contains(mod.melee_attack_types, attack_type) or table.array_contains(mod.melee_damage_profiles, damage_profile.name) then
+					-- manual exception for companion, due to shared damage profile
+					if table.array_contains(mod.melee_attack_types, attack_type) or (table.array_contains(mod.melee_damage_profiles, damage_profile.name) and not table.array_contains(mod.companion_attack_types, attack_type)) then
 						self._melee_rate = (self._melee_rate or {})
 						self._melee_rate[account_id] = self._melee_rate[account_id] or {}
 						self._melee_rate[account_id].hits = self._melee_rate[account_id].hits or 0

@@ -1,4 +1,10 @@
 # 2025-07-01
+v1.2.2
+
+- Added check to separate shock maul electrocution and dog electrocution
+    - 
+
+# 2025-07-01
 v1.2.1-beta
 
 - Added localizations for new settings
