@@ -1,10 +1,11 @@
 # 2025-07-01
-v1.2.2
+v1.2.2-beta
 
 - Added check to separate shock maul electrocution and dog electrocution
     - Put `shockmaul_stun_interval_damage` into both `melee_damage_profiles` and `companion_damage_profiles`
     - Add to melee damage if it matches the damage profile AND attack type was NOT dog
     - No check needed for companion damage because it's an elseif
+- nvm this was shit
 
 # 2025-07-01
 v1.2.1-beta

@@ -93,7 +93,7 @@ mod.melee_attack_types ={
 	-- "buff", -- regular Shock Maul and Arbites power maul stun intervals. also covers warp and bleed
 }
 mod.melee_damage_profiles ={
-	"shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
+	-- "shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
 	"powermaul_p2_stun_interval",
 	"powermaul_p2_stun_interval_basic",
 	"powermaul_shield_block_special",
