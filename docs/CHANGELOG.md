@@ -1,4 +1,15 @@
 # 2025-07-01
+v1.2.3
+
+- Readded the debug message suppression (how did that disappear???)
+    - now also prints it silently into the log if they're suppressed
+    - probably lost it when i used the versions with localizations from the nexus page
+- Added `psyker_heavy_swings_shock` to ranged damage (tyvm syllogism :prayge:)
+    - Put in ranged because it's electrocution on heavies from Smite sub talent and dog electrocution remote detonation (`adamant_whistle_electrocution` so I'm assuming that's what it is)
+    - In `settings/buff/weapon_buff_templates.lua` they added the buff category to it, so before it was probably defaulting to melee/ranged (checked myself and thanks to syllogism for checking first)
+    - `templates.adamant_whistle_electrocution.attack_type = attack_types.buff`
+
+# 2025-07-01
 v1.2.2-beta
 
 - Added check to separate shock maul electrocution and dog electrocution

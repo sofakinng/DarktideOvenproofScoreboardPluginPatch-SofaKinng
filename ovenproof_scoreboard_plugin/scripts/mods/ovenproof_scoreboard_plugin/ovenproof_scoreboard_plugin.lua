@@ -13,7 +13,7 @@ local TextUtilities = mod:original_require("scripts/utilities/ui/text")
 -- #######
 -- Mod Locals
 -- #######
-local mod_version = "1.2.2"
+local mod_version = "1.2.3"
 local debug_messages_enabled = mod:get("enable_debug_messages")
 
 local in_match
