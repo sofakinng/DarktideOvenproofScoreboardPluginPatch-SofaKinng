@@ -1,5 +1,5 @@
 # 2025-07-01
-v1.2.3
+v1.2.2
 
 - Readded the debug message suppression (how did that disappear???)
     - now also prints it silently into the log if they're suppressed
@@ -10,7 +10,7 @@ v1.2.3
     - `templates.adamant_whistle_electrocution.attack_type = attack_types.buff`
 
 # 2025-07-01
-v1.2.2-beta
+v1.2.2-beta-fail
 
 - Added check to separate shock maul electrocution and dog electrocution
     - Put `shockmaul_stun_interval_damage` into both `melee_damage_profiles` and `companion_damage_profiles`
