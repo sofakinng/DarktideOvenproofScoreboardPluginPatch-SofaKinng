@@ -1,4 +1,11 @@
-# 2025-07-01
+# 2025-07-08
+v1.2.3
+
+- Added fallback for havoc ammo modifier (pls have better system for this dummy)
+    - Added silent logging for this so I can debug later
+    - Made local variable for tostring for performance
+
+# 2025-07-07
 v1.2.2
 
 - Readded the debug message suppression (how did that disappear???)

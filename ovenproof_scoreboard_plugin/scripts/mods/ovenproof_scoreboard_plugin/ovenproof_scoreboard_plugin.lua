@@ -11,9 +11,14 @@ local TextUtilities = mod:original_require("scripts/utilities/ui/text")
 --local LargeClipPickup = require("scripts/settings/pickup/pickups/consumable/large_clip_pickup")
 
 -- #######
+-- Optimizations for globals
+-- #######
+local tostring = tostring
+
+-- #######
 -- Mod Locals
 -- #######
-local mod_version = "1.2.2"
+local mod_version = "1.2.3"
 local debug_messages_enabled = mod:get("enable_debug_messages")
 
 local in_match
@@ -754,7 +759,9 @@ function mod.on_game_state_changed(status, state_name)
 		havoc_manager = Managers.state.havoc
 		is_playing_havoc = havoc_manager:is_havoc()
 		if is_playing_havoc then
-			mod.ammunition_pickup_modifier = havoc_manager:get_modifier_value("ammo_pickup_modifier")
+			-- adding fallback 
+			mod.ammunition_pickup_modifier = havoc_manager:get_modifier_value("ammo_pickup_modifier") or 1
+			mod:info("Havoc ammo modifier: "..tostring(mod.ammunition_pickup_modifier))
 		else
 			mod.ammunition_pickup_modifier = 1 
 		end
