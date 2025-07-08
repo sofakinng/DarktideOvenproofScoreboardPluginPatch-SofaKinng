@@ -4,30 +4,29 @@ local ui_renderer_instance = Managers.ui:ui_constant_elements():ui_renderer()
 local languages = {"en","ru","zh-cn","zh-tw"}
 
 mod.get_text_size = function(self, input_text)
-
-return UIRenderer.text_size(ui_renderer_instance, input_text, "proxima_nova_bold", 0.1)
-
+	return UIRenderer.text_size(ui_renderer_instance, input_text, "proxima_nova_bold", 0.1)
 end
+
 local max_length = mod:get_text_size("AAAAAAAAAAAAAAAAAAAAAAAAAA  \u{200A}A")
 
 mod.create_string = function(string_left, string_right)
-local spacer_symbol = "\u{200A}"
-local temp_string = ""
-local padding_string = ""
-local tab_string = ""
-local total_length = 0
+	local spacer_symbol = "\u{200A}"
+	local temp_string = ""
+	local padding_string = ""
+	local tab_string = ""
+	local total_length = 0
 
-if mod:get_text_size(string_left.."\t "..string_right) < max_length then
-	tab_string = "\t "
-end
+	if mod:get_text_size(string_left.."\t "..string_right) < max_length then
+		tab_string = "\t "
+	end
 
-while total_length < max_length do
-padding_string = padding_string..spacer_symbol
-temp_string = string_left..tab_string..padding_string..string_right
-total_length = mod:get_text_size(temp_string)
-end
+	while total_length < max_length do
+		padding_string = padding_string..spacer_symbol
+		temp_string = string_left..tab_string..padding_string..string_right
+		total_length = mod:get_text_size(temp_string)
+	end
 
-return string_left..tab_string..padding_string..string_right
+	return string_left..tab_string..padding_string..string_right
 end
 
 local localization = {
