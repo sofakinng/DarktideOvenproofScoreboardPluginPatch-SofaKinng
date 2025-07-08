@@ -97,6 +97,7 @@ mod.melee_damage_profiles ={
 	"powermaul_p2_stun_interval",
 	"powermaul_p2_stun_interval_basic",
 	"powermaul_shield_block_special",
+	
 }
 mod.ranged_attack_types ={
 	"ranged",
@@ -108,6 +109,7 @@ mod.ranged_damage_profiles ={
 	"psyker_protectorate_spread_chain_lightning_interval",
 	"default_chain_lighting_interval",
 	"psyker_smite_kill",
+	"psyker_heavy_swings_shock", -- Psyker Smite on heavies and Remote Detonation on dog?
 }
 -- Dog damage doesn't count as melee/ranged for penances
 --	but the shock bomb collar counts for puncture, which is covered by "explosion" being in ranged_attack_types
