@@ -1,4 +1,9 @@
 # 2025-07-08
+v1.2.4
+
+- Added Brazilian Portuguese localization. Thanks Talesz!
+
+# 2025-07-08
 v1.2.3
 
 - Added fallback for havoc ammo modifier (pls have better system for this dummy)

@@ -18,7 +18,7 @@ local tostring = tostring
 -- #######
 -- Mod Locals
 -- #######
-local mod_version = "1.2.3"
+local mod_version = "1.2.4"
 local debug_messages_enabled = mod:get("enable_debug_messages")
 
 local in_match
