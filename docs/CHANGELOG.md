@@ -1,14 +1,15 @@
 # 2025-07-08
 v1.2.4
 
-- Added Brazilian Portuguese localization. Thanks Talesz!
+- Added Brazilian Portuguese localization from Talesz
 
 # 2025-07-08
 v1.2.3
 
-- Added fallback for havoc ammo modifier (pls have better system for this dummy)
+- Added fallback for havoc ammo modifier
+    - Defaults to 1 if not found in table (low havocs don't use the values from that)
     - Added silent logging for this so I can debug later
-    - Made local variable for tostring for performance
+- Made local variable for tostring for performance
 
 # 2025-07-07
 v1.2.2
