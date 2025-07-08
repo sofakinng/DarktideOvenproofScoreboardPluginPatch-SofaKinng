@@ -760,6 +760,7 @@ function mod.on_game_state_changed(status, state_name)
 		is_playing_havoc = havoc_manager:is_havoc()
 		if is_playing_havoc then
 			-- adding fallback 
+			-- havoc modifier goes from 0.85-0.4, but lower ranks just use 1
 			mod.ammunition_pickup_modifier = havoc_manager:get_modifier_value("ammo_pickup_modifier") or 1
 			mod:info("Havoc ammo modifier: "..tostring(mod.ammunition_pickup_modifier))
 		else
