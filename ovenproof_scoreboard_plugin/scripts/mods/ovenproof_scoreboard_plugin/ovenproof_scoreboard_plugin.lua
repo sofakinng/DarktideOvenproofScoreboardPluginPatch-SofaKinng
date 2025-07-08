@@ -645,7 +645,12 @@ mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, da
 					-- ------------
 					else
 						--Print damage profile and attack type of out of scope attacks
-						mod:echo("Player: "..player:name()..", Damage profile: " .. damage_profile.name .. ", attack type: " .. tostring(attack_type)..", damage: "..actual_damage)
+						local error_string = "Player: "..player:name()..", Damage profile: " .. damage_profile.name .. ", attack type: " .. tostring(attack_type)..", damage: "..actual_damage
+						if mod.debug_messages_enabled then
+							mod:echo(error_string)
+						else
+							mod:info(error_string)
+						end
 					end	
 
 					-- ------------------------
