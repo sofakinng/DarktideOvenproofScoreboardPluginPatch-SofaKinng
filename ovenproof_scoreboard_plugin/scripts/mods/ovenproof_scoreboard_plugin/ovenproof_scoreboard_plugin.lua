@@ -143,7 +143,7 @@ mod.warpfire_damage_profiles ={
 	"warpfire",
 }
 
-mod.shocking_damage_profiles = {
+mod.electrocute_damage_profiles = {
 	"shockmaul_stun_interval_damage",
 	"powermaul_p2_stun_interval",
 	"powermaul_p2_stun_interval_basic",
@@ -630,23 +630,23 @@ mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, da
 					-- ------------
 					-- 	Shocking
 					-- ------------					
-					elseif table.array_contains(mod.shocking_damage_profiles, damage_profile.name) then
-						--[[self._shocking_rate = (self._shocking_rate or {})
-						self._shocking_rate[account_id] = (self._shocking_rate[account_id] or {})
-						self._shocking_rate[account_id].hits = (self._shocking_rate[account_id].hits or 0) + 1
-						self._shocking_rate[account_id].crits = (self._shocking_rate[account_id].crits or 0)
+					elseif table.array_contains(mod.electrocute_damage_profiles, damage_profile.name) then
+						--[[self._electrocute_rate = (self._electrocute_rate or {})
+						self._electrocute_rate[account_id] = (self._electrocute_rate[account_id] or {})
+						self._electrocute_rate[account_id].hits = (self._electrocute_rate[account_id].hits or 0) + 1
+						self._electrocute_rate[account_id].crits = (self._electrocute_rate[account_id].crits or 0)
 						]]
-						scoreboard:update_stat("total_shocking_damage", account_id, actual_damage)
+						scoreboard:update_stat("total_electrocute_damage", account_id, actual_damage)
 						--if is_critical_strike then
-						--	self._shocking_rate[account_id].crits = self._shocking_rate[account_id].crits + 1
+						--	self._electrocute_rate[account_id].crits = self._electrocute_rate[account_id].crits + 1
 						--end
 						if attack_result == "died" then
-							scoreboard:update_stat("total_shocking_kills", account_id, 1)
+							scoreboard:update_stat("total_electrocute_kills", account_id, 1)
 						end
 						
-						--self._shocking_rate[account_id].cr = self._shocking_rate[account_id].crits / self._shocking_rate[account_id].hits * 100
+						--self._electrocute_rate[account_id].cr = self._electrocute_rate[account_id].crits / self._electrocute_rate[account_id].hits * 100
 						
-						--mod:replace_row_value("shocking_cr", account_id, self._shocking_rate[account_id].cr)
+						--mod:replace_row_value("electrocute_cr", account_id, self._electrocute_rate[account_id].cr)
 					-- ------------
 					-- 	Environmental
 					-- ------------
@@ -1454,31 +1454,31 @@ mod.scoreboard_rows = {
 		setting = "offense_tier_1",
 	},
 	-- Shocking Totals
-	{name = "total_shocking",
+	{name = "total_electrocute",
 		text = "row_total_shocking",
 		validation = "ASC",
 		iteration = "ADD",
 		summary = {
-			"total_shocking_kills",
-			"total_shocking_damage",
+			"total_electrocute_kills",
+			"total_electrocute_damage",
 		},
 		group = "group_1",
 		setting = "offense_tier_1",
 	},
-	{name = "total_shocking_kills",
+	{name = "total_electrocute_kills",
 		text = "row_kills",
 		validation = "ASC",
 		iteration = "ADD",
 		group = "group_1",
-		parent = "total_shocking",
+		parent = "total_electrocute",
 		setting = "offense_tier_1",
 	},
-	{name = "total_shocking_damage",
+	{name = "total_electrocute_damage",
 		text = "row_damage",
 		validation = "ASC",
 		iteration = "ADD",
 		group = "group_1",
-		parent = "total_shocking",
+		parent = "total_electrocute",
 		setting = "offense_tier_1",
 	},	
 	--Environmental Totals
