@@ -488,7 +488,7 @@ local localization = {
         ["zh-cn"] = {left = "完全伴侣", right = "[ 击杀 | 伤害 ]",},
         ["zh-tw"] = { left = "完全伴侶", right = "[ 擊殺 | 傷害 ]",},
         ["pt-br"] = {left = "Total Companheiro", right = "[Abates | Dano]",},
-    },
+	},
     row_total_bleeding = {
         en = {left = "Total Bleeding", right = "[ Kills | Damage ]",},
         ru = {left = "Всего от Кровотечения", right = "[Убийств/Урона]",},
@@ -510,6 +510,13 @@ local localization = {
         ["zh-tw"] = { left = "總靈魂之火", right = "[ 擊殺 | 傷害 ]",},
         ["pt-br"] = {left = "Total Warpfire", right = "[Abates | Dano]",},
     },
+    row_total_shocking = {
+	en = {left = "Total Shocking", right = "[ Kills | Damage ]",},
+	ru = {left = "Всего от Электрический", right = "[Убийств/Урона]",},
+	["zh-cn"] = {left = "电力总计", right = "[ 击杀 | 伤害 ]",},
+	["zh-tw"] = { left = "电力总计", right = "[ 擊殺 | 傷害 ]",},
+        ["pt-br"] = {left = "Total Elétrica", right = "[Abates | Dano]",},
+    },	
     row_total_environmental = {
         en = {left = "Total Environmental", right = "[ Kills | Damage ]",},
         ru = {left = "Всего от Окружения", right = "[Убийств/Урона]",},
