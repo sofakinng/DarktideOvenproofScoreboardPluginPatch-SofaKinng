@@ -99,9 +99,9 @@ mod.melee_attack_types ={
 }
 mod.melee_damage_profiles ={
 	-- "shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
-	"powermaul_p2_stun_interval",
-	"powermaul_p2_stun_interval_basic",
-	"powermaul_shield_block_special",
+	--"powermaul_p2_stun_interval",
+	--"powermaul_p2_stun_interval_basic",
+	--"powermaul_shield_block_special",
 	
 }
 mod.ranged_attack_types ={
@@ -110,11 +110,11 @@ mod.ranged_attack_types ={
 	"shout",
 }
 mod.ranged_damage_profiles ={
-	"shock_grenade_stun_interval",
-	"psyker_protectorate_spread_chain_lightning_interval",
-	"default_chain_lighting_interval",
-	"psyker_smite_kill",
-	"psyker_heavy_swings_shock", -- Psyker Smite on heavies and Remote Detonation on dog?
+	-- "shock_grenade_stun_interval",
+	-- "psyker_protectorate_spread_chain_lightning_interval",
+	-- "default_chain_lighting_interval",
+	-- "psyker_smite_kill",
+	-- "psyker_heavy_swings_shock", -- Psyker Smite on heavies and Remote Detonation on dog?
 }
 -- Dog damage doesn't count as melee/ranged for penances
 --	but the shock bomb collar counts for puncture, which is covered by "explosion" being in ranged_attack_types
@@ -126,7 +126,7 @@ mod.companion_damage_profiles ={
 	-- "adamant_companion_human_pounce",
 	-- "adamant_companion_ogryn_pounce",
 	-- "adamant_companion_monster_pounce",
-	"shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
+	-- "shockmaul_stun_interval_damage", -- shock maul electrocution and Arbites dog shocks
 }
 
 mod.bleeding_damage_profiles ={
@@ -142,8 +142,8 @@ mod.burning_damage_profiles ={
 mod.warpfire_damage_profiles ={
 	"warpfire",
 }
---[[
-mod.electrocution_damage_profiles = {
+
+mod.shocking_damage_profiles = {
 	"shockmaul_stun_interval_damage",
 	"powermaul_p2_stun_interval",
 	"powermaul_p2_stun_interval_basic",
@@ -152,8 +152,8 @@ mod.electrocution_damage_profiles = {
 	"psyker_protectorate_spread_chain_lightning_interval",
 	"default_chain_lighting_interval",
 	"psyker_smite_kill",
+	"psyker_heavy_swings_shock",
 }
-]]
 mod.environmental_damage_profiles = {
 	"barrel_explosion",
 	"barrel_explosion_close",
@@ -627,6 +627,26 @@ mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, da
 						--self._warpfire_rate[account_id].cr = self._warpfire_rate[account_id].crits / self._warpfire_rate[account_id].hits * 100
 						
 						--mod:replace_row_value("warpfire_cr", account_id, self._warpfire_rate[account_id].cr)
+					-- ------------
+					-- 	Shocking
+					-- ------------					
+					elseif table.array_contains(mod.shocking_damage_profiles, damage_profile.name) then
+						--[[self._shocking_rate = (self._shocking_rate or {})
+						self._shocking_rate[account_id] = (self._shocking_rate[account_id] or {})
+						self._shocking_rate[account_id].hits = (self._shocking_rate[account_id].hits or 0) + 1
+						self._shocking_rate[account_id].crits = (self._shocking_rate[account_id].crits or 0)
+						]]
+						scoreboard:update_stat("total_shocking_damage", account_id, actual_damage)
+						--if is_critical_strike then
+						--	self._shocking_rate[account_id].crits = self._shocking_rate[account_id].crits + 1
+						--end
+						if attack_result == "died" then
+							scoreboard:update_stat("total_shocking_kills", account_id, 1)
+						end
+						
+						--self._shocking_rate[account_id].cr = self._shocking_rate[account_id].crits / self._shocking_rate[account_id].hits * 100
+						
+						--mod:replace_row_value("shocking_cr", account_id, self._shocking_rate[account_id].cr)
 					-- ------------
 					-- 	Environmental
 					-- ------------
@@ -1377,6 +1397,7 @@ mod.scoreboard_rows = {
 		parent = "total_bleeding",
 		setting = "offense_tier_1",
 	},
+	-- Burning Totals
 	{name = "total_burning",
 		text = "row_total_burning",
 		validation = "ASC",
@@ -1404,6 +1425,7 @@ mod.scoreboard_rows = {
 		parent = "total_burning",
 		setting = "offense_tier_1",
 	},
+	-- Warpfire Totals
 	{name = "total_warpfire",
 		text = "row_total_warpfire",
 		validation = "ASC",
@@ -1431,6 +1453,35 @@ mod.scoreboard_rows = {
 		parent = "total_warpfire",
 		setting = "offense_tier_1",
 	},
+	-- Shocking Totals
+	{name = "total_shocking",
+		text = "row_total_shocking",
+		validation = "ASC",
+		iteration = "ADD",
+		summary = {
+			"total_shocking_kills",
+			"total_shocking_damage",
+		},
+		group = "group_1",
+		setting = "offense_tier_1",
+	},
+	{name = "total_shocking_kills",
+		text = "row_kills",
+		validation = "ASC",
+		iteration = "ADD",
+		group = "group_1",
+		parent = "total_shocking",
+		setting = "offense_tier_1",
+	},
+	{name = "total_shocking_damage",
+		text = "row_damage",
+		validation = "ASC",
+		iteration = "ADD",
+		group = "group_1",
+		parent = "total_shocking",
+		setting = "offense_tier_1",
+	},	
+	--Environmental Totals
 	{name = "total_environmental",
 		text = "row_total_environmental",
 		validation = "ASC",
