@@ -1,19 +1,23 @@
 # 2025-07-25
 v1.3.0
 
-- Fix for Havoc crate pickups
+- Fix for Havoc crate pickups (thanks for noticing, Vatinas!)
     - Havoc modifier was being applied only to the ammo missing, not the actual pickup amount, so values were too low
         - e.g. Have 40% ammo and use crate with Havoc modifier of 85%
         - OLD: pickup was calculated as 60% * 85% = 51%
         - NEW: Pickup is 100% * 85% = 85%
     - Now calculates actual pickup amount and percentage
-- Refactored ammo pickup options to have less copied code (now that waste can be tracked for both)
 - Added more settings options
     - Grouped up ammo settings (messages and waste)
     - Added toggle to track ammo crate waste (defaulted to off to not make changes)
     - Added toggle to add ammo crate to total percentage of pickup
         - Added toggle to only do this in Havoc
         - Defaults to off to not have unexpected changes
+- Refactored ammo pickup options to have less copied code (now that waste can be tracked for both)
+- Made mod version a global
+    - Slightly worse performance on restart
+    - Now other mods can check this mod's version, in case they rely on one of the features from a specific version onward
+    - ...Nobody is going to do this
 
 # 2025-07-08
 v1.2.5

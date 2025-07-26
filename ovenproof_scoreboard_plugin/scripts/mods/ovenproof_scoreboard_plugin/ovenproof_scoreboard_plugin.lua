@@ -18,7 +18,7 @@ local tostring = tostring
 -- #######
 -- Mod Locals
 -- #######
-local mod_version = "1.2.4"
+mod.version = "1.3.0"
 local debug_messages_enabled = mod:get("enable_debug_messages")
 
 local in_match
@@ -768,7 +768,7 @@ end
 function mod.on_all_mods_loaded()
 	debug_messages_enabled = mod:get("enable_debug_messages")
 	--mod:echo(os.date('%H:%M:%S'))
-	mod:info("Version "..mod_version.." loaded uwu nya :3")
+	mod:info("Version "..mod.version.." loaded uwu nya :3")
 end
 
 -- ############
