@@ -18,6 +18,7 @@ v1.3.0
     - Needs to check if Scoreboard is installed
     - Before, it was checking this... literally every single time something needed to be tracked...
     - Now I check it once on startup, when all mods load, and exit with an error message if it's not found
+    - Also removed the checks for `if scoreboard then` because it's implied by having reached this far
 - Made mod version a global
     - Slightly worse performance on restart
     - Now other mods can check this mod's version, in case they rely on one of the features from a specific version onward

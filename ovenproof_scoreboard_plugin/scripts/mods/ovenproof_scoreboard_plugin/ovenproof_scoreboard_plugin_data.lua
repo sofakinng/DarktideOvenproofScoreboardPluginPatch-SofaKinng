@@ -66,7 +66,7 @@ return {
 					{	setting_id 		= "track_ammo_crate_in_percentage",
 						type 			= "checkbox",
 						default_value 	= false,
-						suboptions 		= {
+						sub_widgets 	= {
 							{	setting_id 		= "track_ammo_crate_in_percentage_only_havoc",
 								type 			= "checkbox",
 								default_value 	= false,
