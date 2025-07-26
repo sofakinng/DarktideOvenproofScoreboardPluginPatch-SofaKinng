@@ -446,7 +446,7 @@ function mod.on_all_mods_loaded()
 								local text_crate = TextUtilities.apply_color_to_text(mod:localize("message_ammo_crate_text"), color)
 								local message = ""
 								-- Only prints waste message if that's enabled, and if there was actually waste found
-								if mod:get("track_ammo_crate_waste") and (not (waste == 0)) then
+								if mod:get("track_ammo_crate_waste") and (not (wasted == 0)) then
 									local displayed_waste = math.max(1, math.round(wasted_pct))
 									local wasted_text = TextUtilities.apply_color_to_text(tostring(displayed_waste).."%", color)
 									message = mod:localize("message_ammo_crate_waste", text_ammo_taken, text_crate, wasted_text)
