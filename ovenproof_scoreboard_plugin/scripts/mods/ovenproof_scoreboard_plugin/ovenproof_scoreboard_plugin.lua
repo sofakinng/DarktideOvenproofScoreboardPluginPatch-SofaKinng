@@ -307,8 +307,15 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 							end
 						-- Deployabla Ammo Crates
 						elseif ammo == "crate" then
+							-- Amount of Ammo Crate uses
 							scoreboard:update_stat("ammo_crates", account_id, 1)
-							scoreboard:update_stat("ammo_percent", account_id, pickup_pct)
+							-- Adding to total percentage of ammo
+							local only_in_havoc = mod:get("track_ammo_crate_in_percentage_only_havoc")
+							--		User does want this tracked AND
+							--		Checking if Havoc only works
+							if mod:get("track_ammo_crate_in_percentage") and ((not only_in_havoc) or (only_in_havoc and is_playing_havoc)) then
+								scoreboard:update_stat("ammo_percent", account_id, pickup_pct)
+							end
 							if mod:get("ammo_messages") then
 								-- Text formatting
 								-- 		Formatting for percentage of ammo picked up

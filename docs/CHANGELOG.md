@@ -11,6 +11,9 @@ v1.3.0
 - Added more settings options
     - Grouped up ammo settings (messages and waste)
     - Added toggle to track ammo crate waste (defaulted to off to not make changes)
+    - Added toggle to add ammo crate to total percentage of pickup
+        - Added toggle to only do this in Havoc
+        - Defaults to off to not have unexpected changes
 
 # 2025-07-08
 v1.2.5

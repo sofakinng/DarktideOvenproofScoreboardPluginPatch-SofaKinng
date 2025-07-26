@@ -61,7 +61,17 @@ return {
 					},
 					{	setting_id 		= "track_ammo_crate_waste",
 						type 			= "checkbox",
-						default_value 	= false, -- to keep it like it was before
+						default_value 	= false,
+					},
+					{	setting_id 		= "track_ammo_crate_in_percentage",
+						type 			= "checkbox",
+						default_value 	= false,
+						suboptions 		= {
+							{	setting_id 		= "track_ammo_crate_in_percentage_only_havoc",
+								type 			= "checkbox",
+								default_value 	= false,
+							},
+						},
 					},
 				},
 			},
