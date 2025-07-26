@@ -303,6 +303,14 @@ mod.get_row_value = function(self, row_name, account_id)
 	return row.data[account_id] and row.data[account_id].score or 0
 end
 
+-- ############
+-- Check Setting and If It's Only for Havoc
+-- ############
+local function setting_is_enabled_and_check_if_havoc_only(main_setting, is_playing_havoc)
+	local only_in_havoc = mod:get(main_setting.."_only_in_havoc")
+	return mod:get(main_setting) and ((not only_in_havoc) or (only_in_havoc and is_playing_havoc))
+end
+
 -- ########################
 -- Executions on Game States
 -- ########################
@@ -432,10 +440,8 @@ function mod.on_all_mods_loaded()
 							-- Amount of Ammo Crate uses
 							scoreboard:update_stat("ammo_crates", account_id, 1)
 							-- Adding to total percentage of ammo
-							local only_in_havoc = mod:get("track_ammo_crate_in_percentage_only_havoc")
-							--		User does want this tracked AND
-							--		Checking if Havoc only works
-							if mod:get("track_ammo_crate_in_percentage") and ((not only_in_havoc) or (only_in_havoc and is_playing_havoc)) then
+							local count_crates_to_total_ammo = setting_is_enabled_and_check_if_havoc_only("track_ammo_crate_in_percentage", is_playing_havoc)
+							if count_crates_to_total_ammo then
 								scoreboard:update_stat("ammo_percent", account_id, pickup_pct)
 							end
 							if mod:get("ammo_messages") then
@@ -446,7 +452,8 @@ function mod.on_all_mods_loaded()
 								local text_crate = TextUtilities.apply_color_to_text(mod:localize("message_ammo_crate_text"), color)
 								local message = ""
 								-- Only prints waste message if that's enabled, and if there was actually waste found
-								if mod:get("track_ammo_crate_waste") and (not (wasted == 0)) then
+								local count_waste_for_crates = setting_is_enabled_and_check_if_havoc_only("track_ammo_crate_waste", is_playing_havoc)
+								if count_waste_for_crates and (not (wasted == 0)) then
 									local displayed_waste = math.max(1, math.round(wasted_pct))
 									local wasted_text = TextUtilities.apply_color_to_text(tostring(displayed_waste).."%", color)
 									message = mod:localize("message_ammo_crate_waste", text_ammo_taken, text_crate, wasted_text)

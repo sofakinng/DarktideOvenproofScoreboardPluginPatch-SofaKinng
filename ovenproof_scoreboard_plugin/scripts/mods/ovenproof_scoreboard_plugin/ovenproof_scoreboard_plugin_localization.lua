@@ -153,7 +153,7 @@ local localization = {
     track_ammo_crate_in_percentage = {
         en = "Include Ammo Crates in total percentage of Ammo picked up",
     },
-    track_ammo_crate_in_percentage_only_havoc = {
+    track_ammo_crate_in_percentage_only_in_havoc = {
         en = "Only include this if playing Havoc",
     },
     -- Reusable labels
