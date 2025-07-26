@@ -29,7 +29,7 @@ v1.3.0
 - Style
     - Moved helper functions above hooks
     - Indented breed tables and such, so my IDE can collapse them all at once
-- Completely shit my pants when I saw `mod:manage_blank_rows()` was being called LITERALLY EVERY GAME TICK
+- Completely shit my pants when I saw `mod:manage_blank_rows()` was being called LITERALLY EVERY GAME TICK? BUTTER MY BUTT AND CALL ME A BISCUIT
 
 # 2025-07-08
 v1.2.5
