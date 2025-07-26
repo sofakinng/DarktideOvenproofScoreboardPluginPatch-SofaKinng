@@ -18,7 +18,7 @@ local tostring = tostring
 -- #######
 -- Mod Locals
 -- #######
-mod.version = "1.3.0"
+mod.version = "1.4.0"
 local debug_messages_enabled = mod:get("enable_debug_messages")
 
 local in_match
@@ -305,6 +305,14 @@ end
 
 -- ############
 -- Check Setting and If It's Only for Havoc
+--	The idea is I have a setting to toggle x, with a suboptions to only check x if playing Havoc
+--	This chain of checks will tell if that condition is met
+--	Do not track this: return False at check 1
+--	Track this
+--		and don't care if havoc: return True at check 2.2
+--		and cares if havoc
+--			not currently playing havoc: return False at check 2.2.2
+--			is playing havoc: return True at check 2.2.2
 -- ############
 local function setting_is_enabled_and_check_if_havoc_only(main_setting, is_playing_havoc)
 	local only_in_havoc = mod:get(main_setting.."_only_in_havoc")

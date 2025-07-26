@@ -21,7 +21,7 @@ end
 --	table_address[#table_address + 1] = widget_table
 --end
 
-local mod_data_and_options = {
+return {
 	name = mod:localize("mod_title"),
 	description = mod:localize("mod_description"),
 	is_togglable = false,
@@ -86,5 +86,3 @@ local mod_data_and_options = {
 		}, -- closes all widgets
 	}, -- closes all mod options
 }
-
-return mod_data_and_options

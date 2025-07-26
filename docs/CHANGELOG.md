@@ -1,3 +1,15 @@
+# 2025-07-26
+v1.4.0
+
+- Fixed incorrect wasted ammo check for Ammo Crates
+    - stupid bitch made a typo
+    - die
+- Refactors
+    - Helper function to check settings when there's a subwidget for havoc only
+    - Helper functions to create widgets with a subwidget for havoc only
+    - Standardized havoc only widget titles so I can reuse the one localization text
+- Added option to track ammo crate waste only in Havoc (technically a new feature so it's 1.4.0 instead of 1.3.1, by my standards)
+
 # 2025-07-25
 v1.3.0
 
