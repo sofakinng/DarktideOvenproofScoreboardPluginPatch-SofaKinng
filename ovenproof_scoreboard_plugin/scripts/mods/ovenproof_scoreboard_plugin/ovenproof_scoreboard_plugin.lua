@@ -456,6 +456,13 @@ function mod.on_all_mods_loaded()
 								-- Puts message into combat feed
 								Managers.event:trigger("event_combat_feed_kill", unit, message)
 							end
+						else
+							local uncategorized_ammo_pickup_message = "Uncategorized ammo pickup! It is: "..tostring(ammo)
+							if debug_messages_enabled then
+								mod:echo(uncategorized_ammo_pickup_message)
+							else
+								mod:info(uncategorized_ammo_pickup_message)
+							end
 						end
 					end
 				end
