@@ -9,21 +9,26 @@ v1.3.0
     - Now calculates actual pickup amount and percentage
 - Added more settings options
     - Grouped up ammo settings (messages and waste)
-    - Added toggle to track ammo crate waste (defaulted to off to not make changes)
+    - Added toggle to track ammo crate waste (defaulted to off to not have unexpected changes)
     - Added toggle to add ammo crate to total percentage of pickup
         - Added toggle to only do this in Havoc
         - Defaults to off to not have unexpected changes
-- Refactored ammo pickup options to have less copied code (now that waste can be tracked for both)
-- Refactored Scoreboard mod check
-    - Needs to check if Scoreboard is installed
-    - Before, it was checking this... literally every single time something needed to be tracked...
-    - Now I check it once on startup, when all mods load, and exit with an error message if it's not found
-    - Also removed the checks for `if scoreboard then` because it's implied by having reached this far
-- Made mod version a global
-    - Slightly worse performance on restart
-    - Now other mods can check this mod's version, in case they rely on one of the features from a specific version onward
-    - ...Nobody is going to do this
+- Refactored
+    - Ammo pickup variables moved around to have less copied code (now that waste can be tracked for both)
+    - Scoreboard mod check
+        - Needs to check if Scoreboard is installed
+        - Before, it was checking this... literally every single time something needed to be tracked...
+        - Now I check it once on startup, when all mods load, and exit with an error message if it's not found
+        - Also removed the checks for `if scoreboard then` because it's implied by having reached this far
+    - Made mod version a global
+        - Slightly worse performance on restart
+        - Now other mods can check this mod's version, in case they rely on one of the features from a specific version onward
+        - ...Nobody is going to do this
+    - Moved hooks to only be executed after all mods are loaded, so they don't get executed if Scoreboard is not installed
 - Logged uncategorized ammo pickup types, in case that's ever a thing
+- Style
+    - Moved helper functions above hooks
+    - Indented breed tables and such, so my IDE can collapse them all at once
 - Completely shit my pants when I saw `mod:manage_blank_rows()` was being called LITERALLY EVERY GAME TICK
 
 # 2025-07-08
