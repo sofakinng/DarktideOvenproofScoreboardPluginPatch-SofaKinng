@@ -6,8 +6,11 @@ v1.3.0
         - e.g. Have 40% ammo and use crate with Havoc modifier of 85%
         - OLD: pickup was calculated as 60% * 85% = 51%
         - NEW: Pickup is 100% * 85% = 85%
-    - 
+    - Now calculates actual pickup amount and percentage
 - Refactored ammo pickup options to have less copied code (now that waste can be tracked for both)
+- Added more settings options
+    - Grouped up ammo settings (messages and waste)
+    - Added toggle to track ammo crate waste (defaulted to off to not make changes)
 
 # 2025-07-08
 v1.2.5
