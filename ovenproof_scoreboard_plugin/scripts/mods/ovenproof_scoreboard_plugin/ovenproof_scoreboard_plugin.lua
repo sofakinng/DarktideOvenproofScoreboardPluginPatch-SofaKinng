@@ -138,7 +138,7 @@ mod.burning_damage_profiles ={
 	"flame_grenade_liquid_area_fire_burning",
 	"liquid_area_fire_burning_barrel",
 	"liquid_area_fire_burning",
-	--"flamer_assault", -- this just uses burning
+	--"flamer_assault", -- Flaming shots from PBB. this just uses "burning"
 }
 mod.warpfire_damage_profiles ={
 	"warpfire",
