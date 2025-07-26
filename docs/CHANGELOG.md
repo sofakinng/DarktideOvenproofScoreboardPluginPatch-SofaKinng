@@ -1,3 +1,19 @@
+# 2025-07-25
+v1.3.0
+
+- Fix for Havoc crate pickups
+    - Havoc modifier was being applied only to the ammo missing, not the actual pickup amount, so values were too low
+        - e.g. Have 40% ammo and use crate with Havoc modifier of 85%
+        - OLD: pickup was calculated as 60% * 85% = 51%
+        - NEW: Pickup is 100% * 85% = 85%
+    - 
+- Refactored ammo pickup options to have less copied code (now that waste can be tracked for both)
+
+# 2025-07-08
+v1.2.5
+
+- Localization fixes from Sai
+
 # 2025-07-08
 v1.2.4
 
