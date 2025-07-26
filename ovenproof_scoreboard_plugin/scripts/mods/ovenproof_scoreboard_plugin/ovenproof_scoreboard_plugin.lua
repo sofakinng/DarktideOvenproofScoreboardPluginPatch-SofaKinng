@@ -408,8 +408,8 @@ function mod.on_all_mods_loaded()
 						local pickup = math.ceil(base_pickup_from_source * mod.ammunition_pickup_modifier * max_ammo_reserve)
 
 						local wasted = math.max(pickup - ammo_missing, 0)
-						local pickup_pct = 100 * pickup / max_ammo_combined
-						local wasted_pct = 100 * wasted / max_ammo_reserve
+						local pickup_pct = 100 * (pickup / max_ammo_combined)
+						local wasted_pct = 100 * (wasted / max_ammo_reserve)
 						
 						-- Small boxes and Big bags
 						if ammo == "small_clip" or ammo == "large_clip" then
