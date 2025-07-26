@@ -29,7 +29,9 @@ mod.create_string = function(string_left, string_right)
 end
 
 local localization = {
+    -- ----------------
     -- Core
+    -- ----------------
     mod_title = {
         en = "OvenProof's scoreboard",
         ru = "Таблица результатов - плагин OvenProof'а",
@@ -44,7 +46,9 @@ local localization = {
         ["zh-tw"] = "OvenProof 的自訂記分板",
         ["pt-br"] = "scoreboard Personalizado do OvenProof",
     },
+    -- ----------------
     -- Groups
+    -- ----------------
     group_1 = {
         en = "Group 1",
         ru = "Группа 1",
@@ -59,7 +63,9 @@ local localization = {
         ["zh-tw"] = "分數",
         ["pt-br"] = "Pontuação",
     },
+    -- ----------------
     -- Settings
+    -- ----------------
     error_scoreboard_missing = {
         en = "Scoreboard required! This is an add-on plugin to it!",
     },
@@ -156,10 +162,14 @@ local localization = {
     track_ammo_crate_in_percentage = {
         en = "Include Ammo Crates in total percentage of Ammo picked up",
     },
+    -- ----------------
+    -- Reusable labels
+    -- ----------------
+    -- Settings
     setting_only_in_havoc = {
         en = "Only when playing Havoc",
     },
-    -- Reusable labels
+    -- Scoreboard Row Text
     row_kills = {
         en = "Kills",
         ru = "Убийств",
@@ -234,7 +244,9 @@ local localization = {
         ["zh-tw"] = "手雷",
         ["pt-br"] = "Granadas",
     },
+    -- ----------------
     -- Rows: exploration_tier_0
+    -- ----------------
     row_total_material_pickups = {
         en = "Total Material Pickups",
         ru = "Всего поднято Ресурсов",
@@ -278,7 +290,9 @@ local localization = {
         ["zh-tw"] = "彈藥箱使用",
         ["pt-br"] = "Caixas Usadas",
     },
+    -- ----------------
     -- Rows: defense_tier_0
+    -- ----------------
     row_total_health = {
         en = {left = "Total", right = "[ Damage Taken | HP Stations Used ]",},
         ru = {left = "Всего", right = "[Урона получено/Исп.медстанций]",},
@@ -384,7 +398,9 @@ local localization = {
         ["zh-tw"] = "營救玩家數",
         ["pt-br"] = "Aliados Resgatados",
     },
+    -- ----------------
     -- Rows: offense_rates
+    -- ----------------
     row_total_weakspot_rates = {
         en = {left = "Weakspot Rate", right = "[ Melee | Ranged ]",},
         ru = {left = "Уязвимые места", right = "[Ближний/Дальний]",},
@@ -479,7 +495,9 @@ local localization = {
         ["zh-tw"] = "環境",
         ["pt-br"] = "Ambiente",
     },
+    -- ----------------
     -- Rows: offense_tier_0
+    -- ----------------
     row_total = {
         en = {left = "Total", right = "[ Kills | Damage ]",},
         ru = {left = "Всего", right = "[Убийств/Урона]",},
@@ -487,7 +505,9 @@ local localization = {
         ["zh-tw"] = { left = "總數", right = "[ 擊殺 | 傷害 ]",},
         ["pt-br"] = {left = "Total", right = "[Abates | Dano]",},
     },
+    -- ----------------
     -- Rows: offense_tier_1
+    -- ----------------
     row_total_melee = {
         en = {left = "Total Melee", right = "[ Kills | Damage ]",},
         ru = {left = "Всего в Ближнем бою", right = "[Убийств/Урона]",},
@@ -538,7 +558,9 @@ local localization = {
         ["zh-tw"] = { left = "總環境", right = "[ 擊殺 | 傷害 ]",},
         ["pt-br"] = {left = "Total Ambiental", right = "[Abates | Dano]",},
     },
+    -- ----------------
     -- Rows: offense_tier_2
+    -- ----------------
     row_total_lesser = {
         en = {left = "Total Lesser", right = "[ Kills | Damage ]",},
         ru = {left = "Всего Слабые враги", right = "[Убийств/Урона]",},
@@ -567,7 +589,9 @@ local localization = {
         ["zh-tw"] = { left = "全部的 Boss", right = "[ 擊殺 | 傷害 ]",},
         ["pt-br"] = {left = "Total Chefes", right = "[Abates | Dano]",},
     },
+    -- ----------------
     -- Rows: offense_tier_3
+    -- ----------------
     row_melee_lesser = {
         en = {left = "Melee Lesser", right = "[ Kills | Damage ]",},
         ru = {left = "Слабые - Ближний бой", right = "[Убийств/Урона]",},
@@ -617,7 +641,9 @@ local localization = {
         ["zh-tw"] = { left = "Boss", right = "[ 擊殺 | 傷害 ]",},
         ["pt-br"] = {left = "Chefes", right = "[Abates | Dano]",},
     },
+    -- ----------------
     -- Rows: fun_stuff_01
+    -- ----------------
     row_one_shots = {
         en = "Number of one shots",
         ru = "Убийств одним ударом",
