@@ -199,6 +199,13 @@ mod.ammunition_percentage = {
 	-- large_clip = LargeClipPickup.ammunition_percentage,
 	crate = 1,
 }
+
+-- Setup tables for tracking later
+-- 		to count ammo wasted
+mod.current_ammo = {}
+-- 		to see who's interacting
+mod.interaction_units = {}
+--		to see who's disabled (and for when they get freed)
 mod.disabled_players = {}
 
 -- ########################
@@ -214,14 +221,11 @@ local function player_from_unit(unit)
 	return nil
 end
 
---Manage blank rows on update
+-- Manage blank rows on update
+--	WAIT WHAT THE FUCK THIS RUNS ON EVERY SINGLE GAME TICK???
 function mod.update(main_dt)
 	mod:manage_blank_rows()
 end
-
---Setup tables required to count ammo wasted
-mod.current_ammo = {}
-mod.interaction_units = {}
 
 mod:hook(CLASS.InteracteeExtension, "started", function(func, self, interactor_unit, ...)
 
@@ -238,7 +242,7 @@ end)
 -- ############
 -- Exploration: Equipment Use and Pickups
 --	Track materials picked up, health stations used, and ammo picked up
---	Interactions
+--	Interactions stopped
 -- ############
 mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 	local scoreboard = get_mod("scoreboard")
