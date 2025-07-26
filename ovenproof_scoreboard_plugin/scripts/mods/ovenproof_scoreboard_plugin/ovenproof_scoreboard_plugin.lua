@@ -24,6 +24,7 @@ local debug_messages_enabled = mod:get("enable_debug_messages")
 local in_match
 local is_playing_havoc
 local havoc_manager
+local scoreboard
 -- ammo pickup given as a percentage, such as 0.85
 mod.ammunition_pickup_modifier = 1
 
@@ -245,7 +246,7 @@ end)
 --	Interactions stopped
 -- ############
 mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
-	local scoreboard = get_mod("scoreboard")
+	
 	if scoreboard then
 		if result == interaction_results.success then
 			local type = self:interaction_type() or ""
@@ -353,7 +354,7 @@ end)
 --	Player State
 -- ############
 mod:hook(CLASS.PlayerHuskHealthExtension, "fixed_update", function(func, self, unit, dt, t, ...)
-	local scoreboard = get_mod("scoreboard")
+	
 	if scoreboard then
 		local Breed = scoreboard:original_require("scripts/utilities/breed")
 		if unit then
@@ -406,7 +407,7 @@ end)
 --	Player Interactions
 -- ############
 mod:hook(CLASS.PlayerInteracteeExtension, "stopped", function(func, self, result, ...)
-	local scoreboard = get_mod("scoreboard")
+	
 	if scoreboard then
 		local type = self:interaction_type() or ""
 		if result == interaction_results.success then
@@ -436,7 +437,7 @@ end)
 --	Attack reports
 -- ############
 mod:hook(CLASS.AttackReportManager, "add_attack_result", function(func, self, damage_profile, attacked_unit, attacking_unit, attack_direction, hit_world_position, hit_weakspot, damage, attack_result, attack_type, damage_efficiency, is_critical_strike, ...)
-	local scoreboard = get_mod("scoreboard")
+	
 	if scoreboard then
 		local Breed = scoreboard:original_require("scripts/utilities/breed")
 		local player = attacking_unit and player_from_unit(attacking_unit)
@@ -762,8 +763,13 @@ end)
 -- ############
 -- Check Setting Changes
 -- ############
-function mod.on_setting_changed()
+function mod.on_setting_changed(setting_id)
 	debug_messages_enabled = mod:get("enable_debug_messages")
+	scoreboard = get_mod("scoreboard")
+	if not scoreboard then
+		mod:error(mod:localize("error_scoreboard_missing"))
+		return
+	end
 end
 
 -- ############
@@ -771,6 +777,11 @@ end
 -- ############
 function mod.on_all_mods_loaded()
 	debug_messages_enabled = mod:get("enable_debug_messages")
+	scoreboard = get_mod("scoreboard")
+	if not scoreboard then
+		mod:error(mod:localize("error_scoreboard_missing"))
+		return
+	end
 	--mod:echo(os.date('%H:%M:%S'))
 	mod:info("Version "..mod.version.." loaded uwu nya :3")
 end
@@ -803,7 +814,7 @@ end
 -- Manage Blank Rows
 -- ############
 mod.manage_blank_rows = function()
-local scoreboard = get_mod("scoreboard")
+
 	if scoreboard and in_match then
 		local row = scoreboard:get_scoreboard_row("blank_1")
 		local players = Managers.player:players() or {}
@@ -839,7 +850,7 @@ end
 --Function to replace entire value in scoreboard
 -- ############
 mod.replace_row_value = function(self, row_name, account_id, value)
-local scoreboard = get_mod("scoreboard")
+
 	if scoreboard then
 		local row = scoreboard:get_scoreboard_row(row_name)
 		if row then
@@ -866,7 +877,7 @@ end
 --Function to force replacement of text value in scoreboard
 -- ############
 mod.replace_row_text = function(self, row_name, account_id, value)
-local scoreboard = get_mod("scoreboard")
+
 	if scoreboard then
 		local row = scoreboard:get_scoreboard_row(row_name)
 		if row then
@@ -883,7 +894,7 @@ end
 --Function to get a row value from scoreboard
 -- ############
 mod.get_row_value = function(self, row_name, account_id)
-	local scoreboard = get_mod("scoreboard")
+	
 	if scoreboard then
 		local row = scoreboard:get_scoreboard_row(row_name)
 		return row.data[account_id] and row.data[account_id].score or 0

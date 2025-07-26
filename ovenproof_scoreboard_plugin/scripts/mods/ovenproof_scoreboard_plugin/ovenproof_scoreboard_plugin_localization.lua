@@ -60,6 +60,9 @@ local localization = {
         ["pt-br"] = "Pontuação",
     },
     -- Settings
+    error_scoreboard_missing = {
+        en = "Scoreboard required! This is an add-on plugin to it!",
+    },
     enable_debug_messages = {
         en = "Enable error messages",
         ["pt-br"] = "Ativar Mensagens de Erro",
