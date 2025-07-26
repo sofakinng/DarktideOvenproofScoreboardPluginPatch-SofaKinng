@@ -1,5 +1,6 @@
 local mod = get_mod("ovenproof_scoreboard_plugin")
 
+-- Creates a widget with a subwidget to toggle it only for Havoc
 local function create_setting_with_havoc_toggle(setting_id_code)
 	return
 		{	setting_id 		= setting_id_code,
