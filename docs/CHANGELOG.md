@@ -14,6 +14,10 @@ v1.3.0
         - Added toggle to only do this in Havoc
         - Defaults to off to not have unexpected changes
 - Refactored ammo pickup options to have less copied code (now that waste can be tracked for both)
+- Refactored Scoreboard mod check
+    - Needs to check if Scoreboard is installed
+    - Before, it was checking this... literally every single time something needed to be tracked...
+    - Now I check it once on startup, when all mods load, and exit with an error message if it's not found
 - Made mod version a global
     - Slightly worse performance on restart
     - Now other mods can check this mod's version, in case they rely on one of the features from a specific version onward
