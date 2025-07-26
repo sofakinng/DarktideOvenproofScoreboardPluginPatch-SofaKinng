@@ -138,6 +138,7 @@ mod.burning_damage_profiles ={
 	"flame_grenade_liquid_area_fire_burning",
 	"liquid_area_fire_burning_barrel",
 	"liquid_area_fire_burning",
+	--"flamer_assault", -- this just uses burning
 }
 mod.warpfire_damage_profiles ={
 	"warpfire",
@@ -196,6 +197,7 @@ mod.ammunition_percentage = {
 	-- small_clip = SmallClipPickup.ammunition_percentage,
 	large_clip = 0.5,
 	-- large_clip = LargeClipPickup.ammunition_percentage,
+	crate = 1,
 }
 mod.disabled_players = {}
 
@@ -276,17 +278,19 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 						local max_ammo_combined = max_ammo_clip + max_ammo_reserve
 						local ammo_missing = max_ammo_combined - current_ammo_combined
 						
+						-- Base pickup rate (decimal). Defaults to crate as a failsafe
+						local base_pickup_from_source = mod.ammunition_percentage[ammo] or 1
+						-- Calculating amount picked up
+						--		Ammo pickups are rounded up by the game
+						-- 		mod.mmunition_pickup_modifier to account for Havoc modifiers. set by state change check
+						local pickup = math.ceil(base_pickup_from_source * mod.ammunition_pickup_modifier * max_ammo_reserve)
+
+						local wasted = math.max(pickup - ammo_missing, 0)
+						local pickup_pct = 100 * pickup / max_ammo_combined
+						local wasted_pct = 100 * wasted / max_ammo_reserve
+						
 						-- Small boxes and Big bags
 						if ammo == "small_clip" or ammo == "large_clip" then
-							-- ammunition_pickup_modifier to account for Havoc modifiers. set by state change check
-							local pickup = math.ceil(mod.ammunition_percentage[ammo] * mod.ammunition_pickup_modifier * max_ammo_reserve)
-							-- ^ Ammo pickups are rounded up by the game
-							local wasted = math.max(pickup - ammo_missing, 0)
-							local pickup_pct = 100 * pickup / max_ammo_combined
-							local wasted_pct = 100 * wasted / max_ammo_reserve
-							--local base_pickup_pct = 100 * mod.ammunition_percentage[ammo]
-							--scoreboard:update_stat("ammo_percent", account_id, base_pickup_pct)
-							-- Using pickup percentage to account for Havoc modifiers
 							scoreboard:update_stat("ammo_percent", account_id, pickup_pct)
 							scoreboard:update_stat("ammo_wasted_percent", account_id, wasted_pct)
 							if mod:get("ammo_messages") then
@@ -304,11 +308,23 @@ mod:hook(CLASS.InteracteeExtension, "stopped", function(func, self, result, ...)
 						-- Deployabla Ammo Crates
 						elseif ammo == "crate" then
 							scoreboard:update_stat("ammo_crates", account_id, 1)
+							scoreboard:update_stat("ammo_percent", account_id, pickup_pct)
 							if mod:get("ammo_messages") then
-								local missing_pct = 100 * ((ammo_missing * mod.ammunition_pickup_modifier) / max_ammo_combined)
-								local ammo_taken = TextUtilities.apply_color_to_text(tostring(math.round(missing_pct)).."%", color)
+								-- Text formatting
+								-- 		Formatting for percentage of ammo picked up
+								local text_ammo_taken = TextUtilities.apply_color_to_text(tostring(math.round(pickup_pct)).."%", color)
+								-- 		Formatting for Ammo Crate name
 								local text_crate = TextUtilities.apply_color_to_text(mod:localize("message_ammo_crate_text"), color)
-								local message = mod:localize("message_ammo_crate", ammo_taken, text_crate)
+								local message = ""
+								-- Only prints waste message if that's enabled, and if there was actually waste found
+								if mod:get("track_ammo_crate_waste") and wasted > 0 then
+									local displayed_waste = math.max(1, math.round(wasted_pct))
+									local wasted_text = TextUtilities.apply_color_to_text(tostring(displayed_waste).."%", color)
+									message = mod:localize("message_ammo_crate_waste", text_ammo_taken, text_crate, wasted_text)
+								else
+									message = mod:localize("message_ammo_crate", text_ammo_taken, text_crate)
+								end
+								-- Puts message into combat feed
 								Managers.event:trigger("event_combat_feed_kill", unit, message)
 							end
 						end

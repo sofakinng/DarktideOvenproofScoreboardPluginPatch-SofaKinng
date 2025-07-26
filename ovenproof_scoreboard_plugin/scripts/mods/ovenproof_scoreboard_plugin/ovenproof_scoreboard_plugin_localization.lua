@@ -72,6 +72,9 @@ local localization = {
         en = "Scoreboard Row Categories",
         ["pt-br"] = "Categorias de Linhas do scoreboard",
     },
+    ammo_tracking_group = {
+        en = "Ammo Tracking",
+    },
     exploration_tier_0 = {
         en = "Exploration",
         ru = "Исследование",
@@ -141,6 +144,9 @@ local localization = {
         ["zh-tw"] = "訊息 - 彈藥/手雷拾取",
         ["pt-br"] = "Mensagens - Coleta de Munição/Granadas",
     },
+    track_ammo_crate_waste = {
+        en = "Track Ammo Crate waste",
+    },
     -- Reusable labels
     row_kills = {
         en = "Kills",
@@ -194,6 +200,9 @@ local localization = {
         ["zh-cn"] = "拾取了%s弹药，来自%s",
         ["zh-tw"] = "拾取了 %s 彈藥，來自 %s",
         ["pt-br"] = " coletou %s munição de %s",
+    },
+    message_ammo_crate_waste = {
+        en = " picked up %s ammo from an %s, wasting %s",
     },
     message_ammo_crate_text = {
         en = "ammo crate",
