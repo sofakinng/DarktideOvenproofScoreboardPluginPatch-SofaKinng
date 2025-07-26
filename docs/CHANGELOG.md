@@ -23,6 +23,7 @@ v1.3.0
     - Slightly worse performance on restart
     - Now other mods can check this mod's version, in case they rely on one of the features from a specific version onward
     - ...Nobody is going to do this
+- Logged uncategorized ammo pickup types, in case that's ever a thing
 - Completely shit my pants when I saw `mod:manage_blank_rows()` was being called LITERALLY EVERY GAME TICK
 
 # 2025-07-08
